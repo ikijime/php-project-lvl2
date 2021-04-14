@@ -1,0 +1,24 @@
+{
+    "name": "hexlet/code",
+    "description": "Compare two configuration files and output difference.",
+    "type": "project",
+    "bin": [
+        "bin/gendiff.php"
+    ],
+
+    "autoload": {
+        "psr-4": {
+            "Hexlet\\" : "src",
+            "Hexlet\\Test\\" : "tests"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "10.0.x-dev",
+        "squizlabs/php_codesniffer": "4.0.x-dev",
+        "phpstan/phpstan": "0.12.x-dev"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "docopt/docopt": "dev-master"
+    }
+}
