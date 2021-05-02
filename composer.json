@@ -7,9 +7,11 @@
     ],
 
     "autoload": {
+        "files": [
+            "src/Differ.php"
+        ],
         "psr-4": {
-            "Hexlet\\" : "src",
-            "Hexlet\\Test\\" : "tests"
+            "Differ\\": "src"
         }
     },
     "require-dev": {
@@ -20,5 +22,6 @@
     "minimum-stability": "dev",
     "require": {
         "docopt/docopt": "dev-master"
-    }
+    },
+    "license": "MIT"
 }

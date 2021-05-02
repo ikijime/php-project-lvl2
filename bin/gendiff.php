@@ -26,5 +26,3 @@ Options:
 DOC;
 
 $args = \Docopt::handle(DOC, array('version' => '1.0'));
-
-print_r($args);
