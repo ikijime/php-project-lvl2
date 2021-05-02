@@ -11,6 +11,8 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
+use function Differ\Differ\genDiff;
+
 const DOC = <<<DOC
 Generate diff
 
@@ -26,3 +28,10 @@ Options:
 DOC;
 
 $args = \Docopt::handle(DOC, array('version' => '1.0'));
+
+$format = $args['--format'];
+$firstFilePath = $args['<firstFile>'];
+$secondFilePath = $args['<secondFile>'];
+
+$diff = genDiff($firstFilePath, $secondFilePath, $format);
+print_r($diff);
