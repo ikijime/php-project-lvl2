@@ -1,18 +1,16 @@
-name: lint-test
+name: testing
 on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
         
-      - name: Lint and test code
-        uses: actions/checkout@v2
-        run: composer lint
+      - name: Runt tests
         run: composer test
-        run: composer phpstan
-        run: make lint
