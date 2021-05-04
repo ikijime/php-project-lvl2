@@ -1,0 +1,11 @@
+name: run tests and lint
+on: [push]
+jobs:
+  run-on: ubuntu-latest
+  steps:
+    - name: Lint and test code
+      uses: actions/checkout@v2
+      run: composer lint
+      run: composer test
+      run: composer phpstan
+      run: make lint
