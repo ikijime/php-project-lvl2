@@ -12,5 +12,11 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
         
-      - name: Runt tests
+      - name: Run lint
+        run: composer lint
+      
+      - name: Run phpstan
+        run: composer phpstan
+
+      - name: Run tests with PHPUNIT
         run: composer test
