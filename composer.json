@@ -11,7 +11,8 @@
             "src/Differ.php"
         ],
         "psr-4": {
-            "Differ\\": "src"
+            "Differ\\": "src",
+            "Differ\\Tests\\": "tests"
         }
     },
     "require-dev": {
