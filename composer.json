@@ -1,7 +1,16 @@
 {
-    "name": "hexlet/code",
+    "name": "ikijime/php-project-lvl2",
     "description": "Compare two configuration files and output difference.",
+    "keywords": ["hexlet"],
+    "license": "MIT",
     "type": "project",
+    "authors": [
+        {
+          "name": "Alexei Utkin",
+          "email": "lith@protonmail.ch"
+        }
+    ],
+
     "bin": [
         "bin/gendiff.php"
     ],
@@ -29,6 +38,5 @@
         "lint": "composer exec --verbose phpcs -- --standard=PSR12 bin src tests",
         "phpstan": "composer exec --verbose phpstan -- --level=8 analyse bin src tests",
         "test": "composer exec --verbose phpunit tests"
-    },
-    "license": "MIT"
+    }
 }

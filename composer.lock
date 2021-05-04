@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9646b366988b510452eb7dc5ae121b91",
+    "content-hash": "3f77a391ab8d37313218c319591ba1ea",
     "packages": [
         {
             "name": "docopt/docopt",
@@ -413,12 +413,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "699d89b2736aae12a10c08a3c4c7c4212ceeba96"
+                "reference": "7a8ebc374480b736b24ee7ce0a0348879abcd26f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/699d89b2736aae12a10c08a3c4c7c4212ceeba96",
-                "reference": "699d89b2736aae12a10c08a3c4c7c4212ceeba96",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/7a8ebc374480b736b24ee7ce0a0348879abcd26f",
+                "reference": "7a8ebc374480b736b24ee7ce0a0348879abcd26f",
                 "shasum": ""
             },
             "require": {
@@ -466,7 +466,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-03T13:30:51+00:00"
+            "time": "2021-05-04T11:14:29+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -474,12 +474,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "9e945e8347c7185af14050b48c5f9e9434d45fa3"
+                "reference": "2da4cf5ad8c78e70e3c14077681aa7a678b91b4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/9e945e8347c7185af14050b48c5f9e9434d45fa3",
-                "reference": "9e945e8347c7185af14050b48c5f9e9434d45fa3",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/2da4cf5ad8c78e70e3c14077681aa7a678b91b4e",
+                "reference": "2da4cf5ad8c78e70e3c14077681aa7a678b91b4e",
                 "shasum": ""
             },
             "require": {
@@ -544,7 +544,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-04-27T12:10:11+00:00"
+            "time": "2021-05-04T06:20:10+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -797,12 +797,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "4b7028028af6f8228285e413ccf19d35ca5f3d68"
+                "reference": "602370c69e780cb7ec3a7f319ad38843423df3fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/4b7028028af6f8228285e413ccf19d35ca5f3d68",
-                "reference": "4b7028028af6f8228285e413ccf19d35ca5f3d68",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/602370c69e780cb7ec3a7f319ad38843423df3fa",
+                "reference": "602370c69e780cb7ec3a7f319ad38843423df3fa",
                 "shasum": ""
             },
             "require": {
@@ -891,7 +891,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-05-03T14:11:54+00:00"
+            "time": "2021-05-04T06:33:43+00:00"
         },
         {
             "name": "sebastian/cli-parser",
