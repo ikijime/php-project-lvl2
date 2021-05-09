@@ -14,20 +14,20 @@ class GenDiffTest extends TestCase
     {
         $this->expectedFlatOutput = file_get_contents(__DIR__ . '/fixtures/expectedFlatStylish');
     }
-    
-    public function test_flat_stylish_formatting_json(): void
+
+    public function testFlatStylishFormattingJson(): void
     {
         $output = genDiff(__DIR__ . '/fixtures/file1.json', __DIR__ . '/fixtures/file2.json');
         $this->assertEquals($this->expectedFlatOutput, $output);
     }
-    
-    public function test_flat_stylish_formatting_yaml(): void
+
+    public function testFlatStylishFormattingYaml(): void
     {
         $output = genDiff(__DIR__ . '/fixtures/file1.yml', __DIR__ . '/fixtures/file2.yaml');
         $this->assertEquals($this->expectedFlatOutput, $output);
     }
 
-    public function test_flat_stylish_formatting_mixed(): void
+    public function testFlatStylishFormattingMixed(): void
     {
         $output = genDiff(__DIR__ . '/fixtures/file1.json', __DIR__ . '/fixtures/file2.yaml');
         $this->assertEquals($this->expectedFlatOutput, $output);
