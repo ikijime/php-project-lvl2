@@ -17,27 +17,35 @@ function parseValue(mixed $value): string
         return 'null';
     }
 
+    if (!is_object($value)) {
+        return (string) $value;
+    }
+
+    print_r($value);
     return (string) $value;
 }
 
 function genDiff(string $filePath1, string $filePath2, string $format = "stylish"): string
 {
 
-    $fileArray1 = parse($filePath1);
-    $fileArray2 = parse($filePath2);
-    $keys = union(array_keys($fileArray1), array_keys($fileArray2));
+    $firstFile = parse($filePath1);
+    $secondFile = parse($filePath2);
+    $keys = union(
+        array_keys(get_object_vars($firstFile)),
+        array_keys(get_object_vars($secondFile))
+    );
     $sortedKeys = sortBy($keys, fn($key) => $key);
 
-    $result = array_map(function ($key) use ($fileArray1, $fileArray2) {
+    $result = array_map(function ($key) use ($firstFile, $secondFile) {
 
-        $value1 = parseValue($fileArray1[$key] ?? null);
-        $value2 = parseValue($fileArray2[$key] ?? null);
+        $value1 = parseValue($firstFile->$key ?? null);
+        $value2 = parseValue($secondFile->$key ?? null);
 
-        if (!array_key_exists($key, $fileArray2)) {
+        if (!property_exists($secondFile, (string) $key)) {
             return "- {$key}: {$value1}";
         }
 
-        if (!array_key_exists($key, $fileArray1)) {
+        if (!property_exists($firstFile, (string) $key)) {
             return "+ {$key}: {$value2}";
         }
 
