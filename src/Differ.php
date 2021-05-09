@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace Differ\Differ;
 
-use Exception;
-use Symfony\Component\Yaml\Yaml;
-
-use function Funct\Collection\sortBy;
 use function Funct\Collection\union;
+use function Funct\Collection\sortBy;
 
 function parseValue(mixed $value): string
 {
@@ -23,31 +20,11 @@ function parseValue(mixed $value): string
     return (string) $value;
 }
 
-function getFileData(string $filePath): mixed
-{
-    if (!file_exists($filePath)) {
-        throw new \Exception("Invalid filepath: {$filePath}");
-    }
-
-    $extension = pathinfo($filePath)['extension'];
-    $fileContent = file_get_contents($filePath);
-
-    switch ($extension) {
-        case "json":
-            return json_decode($fileContent, true);
-        case "yml":
-            return Yaml::parse($fileContent);
-        default:
-            throw new \Exception("Format {$extension} not supported.");
-    }
-}
-
-
 function genDiff(string $filePath1, string $filePath2, string $format = "stylish"): string
 {
 
-    $fileArray1 = getFileData($filePath1);
-    $fileArray2 = getFileData($filePath2);
+    $fileArray1 = parse($filePath1);
+    $fileArray2 = parse($filePath2);
     $keys = union(array_keys($fileArray1), array_keys($fileArray2));
     $sortedKeys = sortBy($keys, fn($key) => $key);
 

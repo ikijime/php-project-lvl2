@@ -23,13 +23,13 @@ class GenDiffTest extends TestCase
 
     public function testFlatStylishFormattingYaml(): void
     {
-        $output = genDiff(__DIR__ . '/fixtures/file1.yml', __DIR__ . '/fixtures/file2.yml');
+        $output = genDiff(__DIR__ . '/fixtures/file1.yml', __DIR__ . '/fixtures/file2.yaml');
         $this->assertEquals($this->expectedFlatOutput, $output);
     }
 
     public function testFlatStylishFormattingMixed(): void
     {
-        $output = genDiff(__DIR__ . '/fixtures/file1.json', __DIR__ . '/fixtures/file2.yml');
+        $output = genDiff(__DIR__ . '/fixtures/file1.json', __DIR__ . '/fixtures/file2.yaml');
         $this->assertEquals($this->expectedFlatOutput, $output);
     }
 }
