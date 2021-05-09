@@ -8,11 +8,28 @@ use function Differ\Differ\genDiff;
 
 class GenDiffTest extends TestCase
 {
-    public function testFlatStylishFormatting(): void
-    {
-        $expectedOutput = file_get_contents(__DIR__ . '/fixtures/expectedFlatJsonStylish');
-        $actualOutput = genDiff(__DIR__ . '/fixtures/file1.json', __DIR__ . '/fixtures/file2.json');
+    protected string $expectedFlatOutput;
 
-        $this->assertEquals($expectedOutput, $actualOutput);
+    protected function setUp(): void
+    {
+        $this->expectedFlatOutput = file_get_contents(__DIR__ . '/fixtures/expectedFlatStylish');
+    }
+
+    public function testFlatStylishFormattingJson(): void
+    {
+        $output = genDiff(__DIR__ . '/fixtures/file1.json', __DIR__ . '/fixtures/file2.json');
+        $this->assertEquals($this->expectedFlatOutput, $output);
+    }
+
+    public function testFlatStylishFormattingYaml(): void
+    {
+        $output = genDiff(__DIR__ . '/fixtures/file1.yml', __DIR__ . '/fixtures/file2.yml');
+        $this->assertEquals($this->expectedFlatOutput, $output);
+    }
+
+    public function testFlatStylishFormattingMixed(): void
+    {
+        $output = genDiff(__DIR__ . '/fixtures/file1.json', __DIR__ . '/fixtures/file2.yml');
+        $this->assertEquals($this->expectedFlatOutput, $output);
     }
 }
