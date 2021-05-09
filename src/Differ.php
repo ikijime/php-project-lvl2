@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Differ\Differ;
 
+use function Differ\Parsers\parse;
 use function Funct\Collection\union;
 use function Funct\Collection\sortBy;
 
