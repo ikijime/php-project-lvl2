@@ -6,7 +6,7 @@ console:
 
 lint:
 	composer.phar exec --verbose phpcs -- --standard=PSR12 bin src tests
-	composer.phar exec --verbose phpstan -- --level=6 analyse bin src tests
+	composer.phar exec --verbose phpstan -- --level=8 analyse bin src tests
 
 lint-fix:
 	composer.phar exec --verbose phpcbf -- --standard=PSR12 src tests
