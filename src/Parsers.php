@@ -1,6 +1,8 @@
 <?php
 
-namespace Differ\Differ;
+declare(strict_types=1);
+
+namespace Differ\Parsers;
 
 use Symfony\Component\Yaml\Yaml;
 
@@ -10,8 +12,13 @@ function parse(string $filePath): object
         throw new \Exception("Invalid filepath: {$filePath}");
     }
 
-    $extension = pathinfo($filePath)['extension'];
-    $fileContent = (string) file_get_contents($filePath);
+    $fileContent = file_get_contents($filePath);
+
+    if ($fileContent == false) {
+        throw new \Exception("Can't read file: {$filePath}");
+    }
+
+    $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
     switch ($extension) {
         case "json":
