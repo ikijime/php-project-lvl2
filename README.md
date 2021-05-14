@@ -9,8 +9,8 @@
 
 #### Демонстрация работы
 
-##### Сравнение плоских файлов json в формате stylish
-[![asciicast](https://asciinema.org/a/KBds2hBjzuMuWXDK5W09xdOT2.svg)](https://asciinema.org/a/KBds2hBjzuMuWXDK5W09xdOT2)
+##### Сравнение файлов json в формате stylish
+[![asciicast](https://asciinema.org/a/wXS4AOIDdD3lLTXEZVUKWPnYB.svg)](https://asciinema.org/a/wXS4AOIDdD3lLTXEZVUKWPnYB)
 
-##### Сравнение плоских файлов Yaml в формате stylish
-[![asciicast](https://asciinema.org/a/9K8wgkTbpmULZCJHp2zc5a2T9.svg)](https://asciinema.org/a/9K8wgkTbpmULZCJHp2zc5a2T9)
+##### Сравнение файлов Yaml в формате stylish
+[![asciicast](https://asciinema.org/a/K18e69RuAgUCEOmd19yRldszM.svg)](https://asciinema.org/a/K18e69RuAgUCEOmd19yRldszM)
