@@ -6,15 +6,19 @@ use PHPUnit\Framework\TestCase;
 
 use function Differ\Differ\genDiff;
 
+const FIXTURES_PATH = __DIR__ . '/fixtures/';
+
 class GenDiffTest extends TestCase
 {
-    public string|false $expectedStylishOutput;
-    public string|false $expectedPlainOutput;
+    public string|false $expectedStylish;
+    public string|false $expectedPlain;
+    public string|false $expectedJson;
 
     protected function setUp(): void
     {
-        $this->expectedStylishOutput = file_get_contents(__DIR__ . '/fixtures/expectedStylish');
-        $this->expectedPlainOutput = file_get_contents(__DIR__ . '/fixtures/expectedPlain');
+        $this->expectedStylish = file_get_contents(FIXTURES_PATH . 'expectedStylish');
+        $this->expectedPlain = file_get_contents(FIXTURES_PATH . 'expectedPlain');
+        $this->expectedJson = file_get_contents(FIXTURES_PATH . 'expectedJson');
     }
 
     /**
@@ -23,7 +27,7 @@ class GenDiffTest extends TestCase
     public function testStylishFormatting(string $file1, string $file2): void
     {
         $output = genDiff(__DIR__ . $file1, __DIR__ . $file2, 'stylish');
-        $this->assertEquals($this->expectedStylishOutput, $output);
+        $this->assertEquals($this->expectedStylish, $output);
     }
 
     /**
@@ -32,7 +36,16 @@ class GenDiffTest extends TestCase
     public function testPlainFormatting(string $file1, string $file2): void
     {
         $output = genDiff(__DIR__ . $file1, __DIR__ . $file2, 'plain');
-        $this->assertEquals($this->expectedPlainOutput, $output);
+        $this->assertEquals($this->expectedPlain, $output);
+    }
+
+    /**
+    * @dataProvider fileProvider
+    */
+    public function testJsonFormatting(string $file1, string $file2): void
+    {
+        $output = genDiff(__DIR__ . $file1, __DIR__ . $file2, 'json');
+        $this->assertEquals($this->expectedJson, $output);
     }
 
     public function fileProvider(): mixed

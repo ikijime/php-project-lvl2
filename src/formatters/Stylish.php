@@ -6,9 +6,11 @@ namespace Differ\Formatters;
 
 use function Funct\Collection\flattenAll;
 
+const TAB_WIDTH = 4;
+
 function makeIndent(int $depth): string
 {
-    return str_repeat(' ', 4 * $depth);
+    return str_repeat(' ', TAB_WIDTH * $depth);
 }
 
 function parseValue(mixed $value, int $depth): string
