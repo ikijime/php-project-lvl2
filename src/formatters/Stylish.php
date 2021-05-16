@@ -75,6 +75,5 @@ function stylish(object $AST): string
         }, (array) $AST);
     };
 
-    // print_r($iter($AST, 1));
     return implode("\n", flattenAll(['{', $iter($AST, 1), '}']));
 }

@@ -8,22 +8,39 @@ use function Differ\Differ\genDiff;
 
 class GenDiffTest extends TestCase
 {
-    public string|false $expectedFlatOutput;
+    public string|false $expectedStylishOutput;
+    public string|false $expectedPlainOutput;
 
     protected function setUp(): void
     {
-        $this->expectedFlatOutput = file_get_contents(__DIR__ . '/fixtures/expectedStylish');
+        $this->expectedStylishOutput = file_get_contents(__DIR__ . '/fixtures/expectedStylish');
+        $this->expectedPlainOutput = file_get_contents(__DIR__ . '/fixtures/expectedPlain');
     }
 
-    public function testStylishFormattingJson(): void
+    /**
+    * @dataProvider fileProvider
+    */
+    public function testStylishFormatting(string $file1, string $file2): void
     {
-        $output = genDiff(__DIR__ . '/fixtures/file1.json', __DIR__ . '/fixtures/file2.json');
-        $this->assertEquals($this->expectedFlatOutput, $output);
+        $output = genDiff(__DIR__ . $file1, __DIR__ . $file2, 'stylish');
+        $this->assertEquals($this->expectedStylishOutput, $output);
     }
 
-    public function testStylishFormattingYaml(): void
+    /**
+    * @dataProvider fileProvider
+    */
+    public function testPlainFormatting(string $file1, string $file2): void
     {
-        $output = genDiff(__DIR__ . '/fixtures/file1.yaml', __DIR__ . '/fixtures/file2.yml');
-        $this->assertEquals($this->expectedFlatOutput, $output);
+        $output = genDiff(__DIR__ . $file1, __DIR__ . $file2, 'plain');
+        $this->assertEquals($this->expectedPlainOutput, $output);
+    }
+
+    public function fileProvider(): mixed
+    {
+        return [
+            'json files' => ['/fixtures/file1.json','/fixtures/file2.json'],
+            'yaml files' => ['/fixtures/file1.yaml','/fixtures/file2.yml'],
+            'mixed files' => ['/fixtures/file1.json','/fixtures/file2.yml'],
+        ];
     }
 }
