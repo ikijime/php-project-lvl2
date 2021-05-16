@@ -1,6 +1,6 @@
 {
     "0": {
-        "type": "tree",
+        "type": "children",
         "key": "common",
         "oldValue": {
             "4": {
@@ -42,11 +42,11 @@
                 }
             },
             "3": {
-                "type": "tree",
+                "type": "children",
                 "key": "setting6",
                 "oldValue": {
                     "1": {
-                        "type": "tree",
+                        "type": "children",
                         "key": "doge",
                         "oldValue": {
                             "0": {
@@ -77,7 +77,7 @@
         "newValue": null
     },
     "1": {
-        "type": "tree",
+        "type": "children",
         "key": "group1",
         "oldValue": {
             "0": {

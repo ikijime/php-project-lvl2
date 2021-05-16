@@ -48,7 +48,7 @@ function plain(object $AST): string
                     return;
                 case 'changed':
                     return "Property '{$path}' was updated. From " . parseVal($oldValue) . " to " . parseVal($newValue);
-                case 'tree':
+                case 'children':
                     return $iter($oldValue, $path);
                 default:
                     throw new \Exception("Type {$type} not supported");

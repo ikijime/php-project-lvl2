@@ -34,7 +34,7 @@ function genAST(object $firstFile, object $secondFile): object
         }
 
         if (is_object($value1) && is_object($value2)) {
-            return makeNode('tree', $key, genAST($value1, $value2), null);
+            return makeNode('children', $key, genAST($value1, $value2), null);
         }
 
         if ($value1 === $value2) {
