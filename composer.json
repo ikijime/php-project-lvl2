@@ -25,11 +25,7 @@
             "src/formatters/Plain.php",
             "src/Formatters.php",
             "src/formatters/Json.php"
-        ],
-        "psr-4": {
-            "Differ\\": "src",
-            "Differ\\Tests\\": "tests"
-        }
+        ]
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5.0",
