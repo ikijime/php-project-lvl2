@@ -4,19 +4,15 @@ declare(strict_types=1);
 
 namespace Differ\Differ;
 
-use function Differ\Formatters\stylish;
-use function Differ\Formatters\plain;
 use function Differ\Parsers\parse;
 use function Differ\AST\genAST;
+use function Differ\Formatters\format;
 
-function genDiff(string $filePath1, string $filePath2, string $format = 'stylish'): string
+define("DEFAULT_FORMAT", "stylish");
+
+function genDiff(string $filePath1, string $filePath2, string $format = DEFAULT_FORMAT): string
 {
     $AST = genAST(parse($filePath1), parse($filePath2));
 
-    $formats = [
-        'stylish' => fn($AST) => stylish($AST),
-        'plain' => fn($AST) => plain($AST)
-    ];
-
-    return $formats[$format]($AST);
+    return format($AST, $format);
 }

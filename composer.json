@@ -22,7 +22,8 @@
             "src/Parsers.php",
             "src/AST.php",
             "src/formatters/Stylish.php",
-            "src/formatters/Plain.php"
+            "src/formatters/Plain.php",
+            "src/Formatters.php"
         ],
         "psr-4": {
             "Differ\\": "src",
