@@ -10,10 +10,9 @@
 #### Демонстрация работы
 
 ##### Сравнение файлов Json в формате Stylish
-[![asciicast](https://asciinema.org/a/wXS4AOIDdD3lLTXEZVUKWPnYB.svg)](https://asciinema.org/a/wXS4AOIDdD3lLTXEZVUKWPnYB)
-
+[![asciicast](https://asciinema.org/a/By0lj40WCGzRAUlCovav9IDmn.svg)](https://asciinema.org/a/By0lj40WCGzRAUlCovav9IDmn)
 ##### Сравнение файлов Yaml в формате Stylish
-[![asciicast](https://asciinema.org/a/K18e69RuAgUCEOmd19yRldszM.svg)](https://asciinema.org/a/K18e69RuAgUCEOmd19yRldszM)
-
+[![asciicast](https://asciinema.org/a/Tr8i4A8cCfevEwsF77uBAnT4m.svg)](https://asciinema.org/a/Tr8i4A8cCfevEwsF77uBAnT4m)
 ##### Сравнение файлов в формате Plain
 [![asciicast](https://asciinema.org/a/s7M7y8NJuLvHhJ3mZxAhsTVGY.svg)](https://asciinema.org/a/s7M7y8NJuLvHhJ3mZxAhsTVGY)
+
