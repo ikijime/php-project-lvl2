@@ -58,5 +58,5 @@ function plain(object $AST): string
         }, (array) $AST);
     };
 
-    return implode("\n", array_filter(flattenAll($iter($AST, $path = '1'))));
+    return implode("\n", array_filter(flattenAll([$iter($AST, '')])));
 }
