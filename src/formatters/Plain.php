@@ -16,13 +16,15 @@ function parseVal(mixed $value): string
         return 'null';
     }
 
-    if (!is_object($value)) {
+    if (is_string($value)) {
         return "'{$value}'";
     }
 
     if (is_object($value)) {
         return "[complex value]";
     }
+
+    return (string) $value;
 }
 
 function plain(object $AST): string
