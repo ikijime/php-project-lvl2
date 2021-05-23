@@ -5,7 +5,7 @@ namespace Differ\Differ;
 function array_union(array $first, array $second): array
 {
     $merged = array_merge($first, array_diff($second, $first));
-    sort($merged);
+    usort($merged, fn ($left, $right) => strcmp($left, $right));
     return $merged;
 }
 
