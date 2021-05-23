@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Differ\AST;
 
-use function Funct\Collection\union;
-use function Funct\Collection\sortBy;
+use function Differ\Differ\array_union;
 
 function makeNode(string $type, string $key, mixed $oldValue, mixed $newValue): mixed
 {
@@ -14,11 +13,10 @@ function makeNode(string $type, string $key, mixed $oldValue, mixed $newValue): 
 
 function genAST(object $firstFile, object $secondFile): object
 {
-    $keys = union(
-        array_keys(get_object_vars($firstFile)),
-        array_keys(get_object_vars($secondFile))
+    $keys = array_union(
+        array_keys((array) $firstFile),
+        array_keys((array) $secondFile)
     );
-    $sortedKeys = sortBy($keys, fn($key) => $key);
 
     $AST = array_map(function ($key) use ($firstFile, $secondFile) {
 
@@ -46,7 +44,7 @@ function genAST(object $firstFile, object $secondFile): object
         }
 
         return;
-    }, $sortedKeys);
+    }, $keys);
 
     return (object) $AST;
 }

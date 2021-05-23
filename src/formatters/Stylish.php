@@ -4,23 +4,19 @@ declare(strict_types=1);
 
 namespace Differ\Formatters;
 
-use function Funct\Collection\flattenAll;
+use function Differ\Differ\array_flatten;
 
-const TAB_WIDTH = 4;
+const INDENT_WIDTH = 4;
 
 function makeIndent(int $depth): string
 {
-    return str_repeat(' ', TAB_WIDTH * $depth);
+    return str_repeat(' ', INDENT_WIDTH * $depth);
 }
 
 function parseValue(mixed $value, int $depth): string
 {
-    if (is_bool($value)) {
-        return $value ? 'true' : 'false';
-    }
-
-    if (is_null($value)) {
-        return 'null';
+    if (is_bool($value) || is_null($value)) {
+        return (string) json_encode($value, JSON_THROW_ON_ERROR);
     }
 
     if (!is_object($value)) {
@@ -31,13 +27,12 @@ function parseValue(mixed $value, int $depth): string
         $leafs = array();
 
         $leafs[] = array_map(function ($key) use ($depth, $value) {
-            $leaf = makeIndent($depth + 1) .
+            return makeIndent($depth + 1) .
                 "{$key}: " .
                 parseValue($value->$key, $depth + 1);
-            return $leaf;
         }, array_keys((array) $value));
 
-        $branch = implode("\n", flattenAll($leafs));
+        $branch = implode("\n", array_flatten($leafs));
         return "{\n" . $branch . "\n" . makeIndent($depth) . "}";
     }
 }
@@ -70,7 +65,7 @@ function stylish(object $AST): string
                 case 'children':
                     return makeIndent($depth) .
                         "{$key}: {\n" .
-                         implode("\n", flattenAll($iter($node->oldValue, $depth + 1))) .
+                         implode("\n", array_flatten($iter($node->oldValue, $depth + 1))) .
                          "\n" . makeIndent($depth) . "}";
                 default:
                     throw new \Exception("Type {$type} not supported");
@@ -78,5 +73,5 @@ function stylish(object $AST): string
         }, (array) $AST);
     };
 
-    return implode("\n", flattenAll(['{', $iter($AST, 1), '}']));
+    return implode("\n", array_flatten(['{', $iter($AST, 1), '}']));
 }
