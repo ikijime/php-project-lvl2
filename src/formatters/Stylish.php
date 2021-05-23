@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Differ\Formatters;
 
-use function Differ\Differ\array_flatten;
+use function Functional\flatten;
 
 const INDENT_WIDTH = 4;
 
@@ -16,32 +16,31 @@ function makeIndent(int $depth): string
 function parseValue(mixed $value, int $depth): string
 {
     if (is_bool($value) || is_null($value)) {
-        return (string) json_encode($value, JSON_THROW_ON_ERROR);
-    }
-
-    if (!is_object($value)) {
-        return (string) $value;
+        return json_encode($value, JSON_THROW_ON_ERROR);
     }
 
     if (is_object($value)) {
-        $leafs = array();
+        $indent = makeIndent($depth);
 
-        $leafs[] = array_map(function ($key) use ($depth, $value) {
-            return makeIndent($depth + 1) .
-                "{$key}: " .
-                parseValue($value->$key, $depth + 1);
+        $leafs = array_map(function ($key) use ($value, $depth): string {
+            $doubleIndent = makeIndent($depth + 1);
+            $nD = $depth + 1;
+            return "{$doubleIndent}{$key}: " . parseValue($value->$key, $nD);
         }, array_keys((array) $value));
 
-        $branch = implode("\n", array_flatten($leafs));
-        return "{\n" . $branch . "\n" . makeIndent($depth) . "}";
+        $branch = implode("\n", flatten($leafs));
+        return "{\n{$branch}\n{$indent}}";
     }
+
+    return (string) $value;
 }
 
 function stylish(object $AST): string
 {
-    $iter = function (object $AST, int $depth) use (&$iter) {
+    $astArray = (array) $AST;
+    $iter = function (array $astArray, int $depth) use (&$iter): array {
 
-        return array_map(function ($node) use ($iter, $depth) {
+        return array_map(function ($node) use ($iter, $depth): string {
             [
                 'type' => $type,
                 'key' => $key,
@@ -65,13 +64,13 @@ function stylish(object $AST): string
                 case 'children':
                     return makeIndent($depth) .
                         "{$key}: {\n" .
-                         implode("\n", array_flatten($iter($node->oldValue, $depth + 1))) .
+                         implode("\n", flatten($iter((array) $node->oldValue, $depth + 1))) .
                          "\n" . makeIndent($depth) . "}";
                 default:
                     throw new \Exception("Type {$type} not supported");
             }
-        }, (array) $AST);
+        }, $astArray);
     };
 
-    return implode("\n", array_flatten(['{', $iter($AST, 1), '}']));
+    return implode("\n", flatten(['{', $iter($astArray, 1), '}']));
 }

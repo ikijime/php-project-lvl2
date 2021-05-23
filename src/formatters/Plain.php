@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Differ\Formatters;
 
-use function Differ\Differ\array_flatten;
+use function Functional\flatten;
 
 function toString(mixed $value): string
 {
     if (is_bool($value) || is_null($value)) {
-        return (string) json_encode($value, JSON_THROW_ON_ERROR);
+        return json_encode($value, JSON_THROW_ON_ERROR);
     }
 
     if (is_object($value)) {
@@ -17,7 +17,7 @@ function toString(mixed $value): string
     }
 
     if (is_string($value)) {
-        return (string) "'{$value}'";
+        return "'{$value}'";
     }
 
     return (string) $value;
@@ -25,9 +25,9 @@ function toString(mixed $value): string
 
 function plain(object $AST): string
 {
-    $iter = function (object $AST, string $path) use (&$iter) {
+    $iter = function (object $AST, string $path) use (&$iter): array {
 
-        return array_map(function ($node) use ($iter, $path) {
+        return array_map(function ($node) use ($iter, $path): array|string {
             [
                 'type' => $type,
                 'key' => $key,
@@ -35,24 +35,25 @@ function plain(object $AST): string
                 'newValue' => $newValue
             ] = (array) $node;
 
-            $path = (strlen($path) > 1) ? implode('.', [$path, $key]) : $key;
+            $newPath = (strlen($path) > 1) ? implode('.', [$path, $key]) : $key;
 
             switch ($type) {
                 case 'added':
-                    return "Property '{$path}' was added with value: " . toString($newValue);
+                    return "Property '{$newPath}' was added with value: " . toString($newValue);
                 case 'removed':
-                    return "Property '{$path}' was removed";
+                    return "Property '{$newPath}' was removed";
                 case 'unchanged':
-                    return;
+                    return [];
                 case 'changed':
-                    return "Property '{$path}' was updated. From " . toString($oldValue) . " to " . toString($newValue);
+                    return "Property '{$newPath}' was updated. From " .
+                    toString($oldValue) . " to " . toString($newValue);
                 case 'children':
-                    return $iter($oldValue, $path);
+                    return $iter($oldValue, $newPath);
                 default:
                     throw new \Exception("Type {$type} not supported");
             }
         }, (array) $AST);
     };
 
-    return implode("\n", array_flatten([$iter($AST, '')]));
+    return implode("\n", array_filter(flatten([$iter($AST, '')])));
 }

@@ -8,7 +8,7 @@ use function Differ\Parsers\parse;
 use function Differ\AST\genAST;
 use function Differ\Formatters\format;
 
-define("DEFAULT_FORMAT", "stylish");
+const DEFAULT_FORMAT = "stylish";
 
 function genDiff(string $filePath1, string $filePath2, string $format = DEFAULT_FORMAT): string
 {
