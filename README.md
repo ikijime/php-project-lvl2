@@ -4,7 +4,7 @@
 ### Второй проект профессии php-программист на [Hexlet.io](https://ru.hexlet.io/)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/62999c0e32ce0e310f3e/test_coverage)](https://codeclimate.com/github/ikijime/php-project-lvl2/test_coverage) [![Maintainability](https://api.codeclimate.com/v1/badges/62999c0e32ce0e310f3e/maintainability)](https://codeclimate.com/github/ikijime/php-project-lvl2/maintainability)
 #### Описание
-Консольная PHP утилита сравнивающая различие между двумя YAML или JSON файлами.
+Консольная PHP утилита показывающая различие между YAML или JSON файлами.
 Поддерживает вывод в трёх форматах: Stylish(по умолчанию), Plain, Json.
 
 #### Установка
