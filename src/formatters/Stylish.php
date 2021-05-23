@@ -36,9 +36,7 @@ function parseValue(mixed $value, int $depth): string
 
 function stylish(object $AST): string
 {
-    $astArray = (array) $AST;
-    $iter = function (array $astArray, int $depth) use (&$iter): array {
-
+    $iter = function (object $AST, int $depth) use (&$iter): array {
         return array_map(function ($node) use ($iter, $depth): string {
             [
                 'type' => $type,
@@ -63,13 +61,13 @@ function stylish(object $AST): string
                 case 'children':
                     return makeIndent($depth) .
                         "{$key}: {\n" .
-                         implode("\n", flatten($iter((array) $node->oldValue, $depth + 1))) .
+                         implode("\n", flatten($iter($node->oldValue, $depth + 1))) .
                          "\n" . makeIndent($depth) . "}";
                 default:
                     throw new \Exception("Type {$type} not supported");
             }
-        }, $astArray);
+        }, (array) $AST);
     };
 
-    return implode("\n", flatten(['{', $iter($astArray, 1), '}']));
+    return implode("\n", flatten(['{', $iter($AST, 1), '}']));
 }
