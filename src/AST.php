@@ -14,8 +14,8 @@ function makeNode(string $type, string $key, mixed $oldValue, mixed $newValue): 
 function genAST(object $firstFile, object $secondFile): object
 {
     $firstFileKeys = array_keys((array) $firstFile);
-    $seconFiledKeys = array_keys((array) $secondFile);
-    $unionKeys = array_merge($firstFileKeys, array_diff($seconFiledKeys, $firstFileKeys));
+    $seconFileKeys = array_keys((array) $secondFile);
+    $unionKeys = array_merge($firstFileKeys, array_diff($seconFileKeys, $firstFileKeys));
     $sortedKeys = sort($unionKeys, fn($first, $second) => strcmp($first, $second));
 
     $AST = array_map(function ($key) use ($firstFile, $secondFile) {

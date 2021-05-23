@@ -24,8 +24,7 @@ function parseValue(mixed $value, int $depth): string
 
         $leafs = array_map(function ($key) use ($value, $depth): string {
             $doubleIndent = makeIndent($depth + 1);
-            $nD = $depth + 1;
-            return "{$doubleIndent}{$key}: " . parseValue($value->$key, $nD);
+            return "{$doubleIndent}{$key}: " . parseValue($value->$key, $depth + 1);
         }, array_keys((array) $value));
 
         $branch = implode("\n", flatten($leafs));
