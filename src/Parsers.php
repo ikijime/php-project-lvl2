@@ -14,7 +14,7 @@ function parse(string $filePath): object
 
     $fileContent = file_get_contents($filePath);
 
-    if ($fileContent == false) {
+    if ($fileContent === false) {
         throw new \Exception("Can't read file: {$filePath}");
     }
 

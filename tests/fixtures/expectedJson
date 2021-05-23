@@ -3,37 +3,37 @@
         "type": "children",
         "key": "common",
         "oldValue": {
-            "4": {
+            "0": {
                 "type": "added",
                 "key": "follow",
                 "oldValue": null,
                 "newValue": false
             },
-            "0": {
+            "1": {
                 "type": "unchanged",
                 "key": "setting1",
                 "oldValue": "Value 1",
                 "newValue": "Value 1"
             },
-            "1": {
+            "2": {
                 "type": "removed",
                 "key": "setting2",
                 "oldValue": 200,
                 "newValue": null
             },
-            "2": {
+            "3": {
                 "type": "changed",
                 "key": "setting3",
                 "oldValue": true,
                 "newValue": null
             },
-            "7": {
+            "4": {
                 "type": "added",
                 "key": "setting4",
                 "oldValue": null,
                 "newValue": "blah blah"
             },
-            "8": {
+            "5": {
                 "type": "added",
                 "key": "setting5",
                 "oldValue": null,
@@ -41,11 +41,11 @@
                     "key5": "value5"
                 }
             },
-            "3": {
+            "6": {
                 "type": "children",
                 "key": "setting6",
                 "oldValue": {
-                    "1": {
+                    "0": {
                         "type": "children",
                         "key": "doge",
                         "oldValue": {
@@ -58,13 +58,13 @@
                         },
                         "newValue": null
                     },
-                    "0": {
+                    "1": {
                         "type": "unchanged",
                         "key": "key",
                         "oldValue": "value",
                         "newValue": "value"
                     },
-                    "3": {
+                    "2": {
                         "type": "added",
                         "key": "ops",
                         "oldValue": null,
@@ -114,7 +114,7 @@
         },
         "newValue": null
     },
-    "5": {
+    "3": {
         "type": "added",
         "key": "group3",
         "oldValue": null,

@@ -4,27 +4,19 @@ declare(strict_types=1);
 
 namespace Differ\Formatters;
 
-use function Funct\Collection\flattenAll;
+use function Differ\Differ\array_flatten;
 
-function parseVal(mixed $value): string
+function toString(mixed $value): string
 {
-    if (is_bool($value)) {
-        return $value ? 'true' : 'false';
-    }
-
-    if (is_null($value)) {
-        return 'null';
-    }
-
-    if (is_string($value)) {
-        return "'{$value}'";
+    if (is_bool($value) || is_null($value)) {
+        return (string) json_encode($value, JSON_THROW_ON_ERROR);
     }
 
     if (is_object($value)) {
         return "[complex value]";
     }
 
-    return (string) $value;
+    return (string) "'{$value}'";
 }
 
 function plain(object $AST): string
@@ -43,13 +35,13 @@ function plain(object $AST): string
 
             switch ($type) {
                 case 'added':
-                    return "Property '{$path}' was added with value: " . parseVal($newValue);
+                    return "Property '{$path}' was added with value: " . toString($newValue);
                 case 'removed':
                     return "Property '{$path}' was removed";
                 case 'unchanged':
                     return;
                 case 'changed':
-                    return "Property '{$path}' was updated. From " . parseVal($oldValue) . " to " . parseVal($newValue);
+                    return "Property '{$path}' was updated. From " . toString($oldValue) . " to " . toString($newValue);
                 case 'children':
                     return $iter($oldValue, $path);
                 default:
@@ -58,5 +50,5 @@ function plain(object $AST): string
         }, (array) $AST);
     };
 
-    return implode("\n", array_filter(flattenAll([$iter($AST, '')])));
+    return implode("\n", array_flatten([$iter($AST, '')]));
 }
